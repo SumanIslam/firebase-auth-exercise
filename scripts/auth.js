@@ -1,3 +1,8 @@
+// get data
+db.collection('guides').get().then(snapshot => {
+  setupGuides(snapshot.docs);
+})
+
 // listen for auth status changes
 auth.onAuthStateChanged((user) => {
   if(user) {
@@ -7,7 +12,7 @@ auth.onAuthStateChanged((user) => {
   }
 })
 
-// sign up 
+// sign up a user
 const signUpForm = document.querySelector('#signup-form');
 
 signUpForm.addEventListener('submit', (e) => {
