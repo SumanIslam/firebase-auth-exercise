@@ -1,20 +1,23 @@
-const guides = document.querySelector('.guides');
+const guideList = document.querySelector('.guides');
 
 // setup guides method
 const setupGuides = docs => {
-  let html = '';
-
-  docs.forEach(doc => {
-    const guide = doc.data();
-    const li = `
-      <li>
-        <div class="collapsible-header grey lighten-4">${guide.title}</div>
-        <div class="collapsible-body white">${guide.content}</div>
-      </li>
-    `;
-    html += li;
-  });
-  guides.innerHTML = html;
+  if(docs.length) {
+    let html = '';
+    docs.forEach(doc => {
+      const guide = doc.data();
+      const li = `
+        <li>
+          <div class="collapsible-header grey lighten-4">${guide.title}</div>
+          <div class="collapsible-body white">${guide.content}</div>
+        </li>
+      `;
+      html += li;
+    });
+    guideList.innerHTML = html;
+  } else {
+    guideList.innerHTML = `<h5 class="center-align">Log in to view guides</h5>`
+  }
 }
 
 // setup materialize components
