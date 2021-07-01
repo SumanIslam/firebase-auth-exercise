@@ -4,4 +4,3 @@ const closeModal = (id, element) => {
   M.Modal.getInstance(modal).close();
   elementForm.reset();
 }
-// export default closeModal;

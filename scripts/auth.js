@@ -12,6 +12,21 @@ auth.onAuthStateChanged((user) => {
   }
 })
 
+// create new guides and add to db
+const createForm = document.querySelector('#create-form');
+
+createForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  db.collection('guides').add({
+    title: createForm['title'].value,
+    content: createForm['content'].value
+  }).then(() => {
+    closeModal('modal-create', 'create-form');
+  }).catch((err) => {
+    console.log(err.message);
+  })
+})
+
 // sign up a user
 const signUpForm = document.querySelector('#signup-form');
 
@@ -23,7 +38,7 @@ signUpForm.addEventListener('submit', (e) => {
   const password = signUpForm['signup-password'].value;
   // sign up the user
   auth.createUserWithEmailAndPassword(email, password)
-  .then(cred => {
+  .then(() => {
     closeModal('modal-signup', 'signup-form');
   })
   
@@ -46,7 +61,7 @@ loginForm.addEventListener('submit', (e) => {
   const password = loginForm['login-password'].value;
 
   auth.signInWithEmailAndPassword(email, password)
-  .then((cred) => {
+  .then(() => {
     closeModal('modal-login', 'login-form');
   })
   .catch((err => {
