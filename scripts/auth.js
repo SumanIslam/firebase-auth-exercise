@@ -4,7 +4,7 @@ auth.onAuthStateChanged((user) => {
   setupUiNav(user)
   if(user) {
     // get data
-    db.collection('guides').get().then(snapshot => {
+    db.collection('guides').onSnapshot(snapshot => {
       setupGuides(snapshot.docs);
     })
   } else {
