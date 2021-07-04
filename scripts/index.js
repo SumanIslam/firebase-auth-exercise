@@ -6,11 +6,15 @@ const accountDetails = document.querySelector('.account-details');
 // setup UiNav method
 const setupUiNav = user => {
   if(user) {
-    // account info
-    const html = `
-      <div>Logged in as ${user.email}</div>
-    `
-    accountDetails.innerHTML = html;
+    db.collection('users').doc(user.uid).get().then(doc => {
+      // account info
+      const html = `
+        <div>Logged in as ${user.email}</div>
+        <div>${doc.data().bio}</div>
+      `
+      accountDetails.innerHTML = html;
+    })
+    
     loggedInLinks.forEach(item => item.style.display = 'block');
     loggedOutLinks.forEach(item => item.style.display = 'none');
   } else {
