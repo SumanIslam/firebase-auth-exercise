@@ -3,7 +3,7 @@ const loggedInLinks = document.querySelectorAll('.logged-in');
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const accountDetails = document.querySelector('.account-details');
 
-// setup UiNav method
+// setup UINav method
 const setupUiNav = user => {
   if(user) {
     db.collection('users').doc(user.uid).get().then(doc => {
